@@ -13,6 +13,10 @@
   <dd><%= @project.deadline %></dd>
 </dl>
 
+<h3>Attachments</h3>
+<%= render 'attachments/list', attachments: @project.attachments %>
+<br/><br/>
+
 <%= link_to '< Back to Home - Organization', root_path, :class => 'btn btn-primary btn-xs'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_tenant_project_path(project: @project, tenant: @project.tenant_id), :class => 'btn btn-warning' %>
