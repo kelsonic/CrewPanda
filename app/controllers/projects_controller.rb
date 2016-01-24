@@ -1,5 +1,8 @@
 class ProjectsController < ApplicationController
+  
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_tenant, only: [:show, :edit, :update, :destroy, :new, :create]
+  before_action :verify_tenant
 
   # GET /projects
   # GET /projects.json
@@ -28,11 +31,9 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render :show, status: :created, location: @project }
+        format.html { redirect_to root_url, notice: 'Project was created successfully.' }
       else
         format.html { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +43,9 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { render :show, status: :ok, location: @project }
+        format.html { redirect_to root_url, notice: 'Project was updated successfully.' }
       else
         format.html { render :edit }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,7 +55,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Project was destroyed successfully.' }
       format.json { head :no_content }
     end
   end
@@ -71,4 +70,15 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:title, :details, :deadline, :tenant_id)
     end
+    
+    def set_tenant
+      @tenant = Tenant.find(params[:tenant_id])
+    end
+    
+    def verify_tenant
+      unless params[:tenant_id] == Tenant.current_tenant_id.to_s
+        redirect_to :root, flash: { error: 'You are not authorized to access any organization other than your own.' }
+      end
+    end
+    
 end
