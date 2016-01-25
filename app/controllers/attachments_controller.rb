@@ -29,7 +29,7 @@ class AttachmentsController < ApplicationController
 
     respond_to do |format|
       if @attachment.save
-        format.html { redirect_to tenant_project_url(tenant_id: Tenant.current_tennant_id, 
+        format.html { redirect_to tenant_project_url(tenant_id: Tenant.current_tenant_id, 
                 id: @attachment.project_id), notice: 'Attachment was successfully created.' }
         format.json { render :show, status: :created, location: @attachment }
       else
