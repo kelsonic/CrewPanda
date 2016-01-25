@@ -15,6 +15,7 @@ class AttachmentsController < ApplicationController
   # GET /attachments/new
   def new
     @attachment = Attachment.new
+    @attachment.project_id = params[:project_id]
   end
 
   # GET /attachments/1/edit
@@ -28,7 +29,8 @@ class AttachmentsController < ApplicationController
 
     respond_to do |format|
       if @attachment.save
-        format.html { redirect_to @attachment, notice: 'Attachment was successfully created.' }
+        format.html { redirect_to tenant_project_url(tenant_id: Tenant.current_tennant_id, 
+                id: @attachment.project_id), notice: 'Attachment was successfully created.' }
         format.json { render :show, status: :created, location: @attachment }
       else
         format.html { render :new }
@@ -56,7 +58,8 @@ class AttachmentsController < ApplicationController
   def destroy
     @attachment.destroy
     respond_to do |format|
-      format.html { redirect_to attachments_url, notice: 'Attachment was successfully destroyed.' }
+      format.html { redirect_to tenant_project_url(tenant_id: Tenant.current_tennant_id, 
+              id: @attachment.project_id), notice: 'Attachment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +72,6 @@ class AttachmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attachment_params
-      params.require(:attachment).permit(:name, :key, :project_id)
+      params.require(:attachment).permit(:name, :project_id, :upload)
     end
 end
