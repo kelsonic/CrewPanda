@@ -8,8 +8,8 @@
     <thead>
       <tr>
         <th><%= model_class.human_attribute_name(:title) %></th>
-        <th><%= model_class.human_attribute_name(:details) %></th>
         <th><%= model_class.human_attribute_name(:deadline) %></th>
+        <th><%= model_class.human_attribute_name(:details) %></th>
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
     </thead>
@@ -17,10 +17,16 @@
       <% @projects.each do |project| %>
         <tr>
           <td><%= link_to project.title, tenant_project_path(project, tenant_id: @tenant.id), class: "main-link" %></td>
-          <td><%= project.deadline %></td>
-          <td><%=l project.created_at %></td>
+          <td>
+            <% if project.deadline %>
+              <%= project.deadline %>
+            <% else %>
+              None
+            <% end %>
+          </td>
           <td><%= project.details %></td>
           <td>
+            <%= link_to 'View', tenant_project_path(project, tenant_id: @tenant.id), class: "btn btn-primary btn-sm" %>
             <%= link_to t('.edit', :default => t("helpers.links.edit")),
                         edit_tenant_project_path(project, tenant_id: @tenant.id), :class => 'btn btn-warning btn-sm' %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

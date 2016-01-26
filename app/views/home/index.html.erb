@@ -1,5 +1,5 @@
 <% if current_user %>
-<h3 class="text-center">Organization: <%= @tenant.name %></h3>
+<h3 class="text-center"><%= @tenant.name %></h3>
 <%= render 'projects/list' %>
 <% else %>
 <div class="jumbotron text-center">
