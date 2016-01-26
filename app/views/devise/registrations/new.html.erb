@@ -35,10 +35,50 @@
             required:true, class:"form-control" %>
         </div>
         
+        <!--Credit Card Field-->
+        <%= fields_for (:payment ) do |p| %>
+          <div class="row col-md-12">
+            
+            <!--Card Number-->
+            <div class="form-group col-md-4">
+              <%= p.label :card_number, "Card Number", data: { stripe: 'label'} %>
+              <%= p.text_field :card_number, class: "form-control", required: true, data: { stripe: 'number' } %>
+            </div>
+            
+            <!--Card CVV-->
+            <div class="form-group col-md-2">
+              <%= p.label :card_cvv, "Card CVV", data: { stripe: 'label'} %>
+              <%= p.text_field :card_cvv, class: "form-control", required: true, data: { stripe: 'cvv' } %>
+            </div>
+            
+            <div class="form-group col-md-6">
+              
+              <!--Card Expiration Date Label-->
+              <div class="col-md-12">
+                <%= p.label :card_expires, "Card Expires", data: { stripe: 'label' } %>
+              </div>
+              
+              <!--Month Expiration Date-->
+              <div class="col-md-3">
+                <%= p.select :card_expires_month, options_for_select(Payment.month_options),
+                                    { include_blank: 'Month' }, "data-stripe" => "exp-month", 
+                                    class: "form-control", required: true %>
+              </div>
+              
+              <!--Year Expiration Date-->
+              <div class="col-md-3">
+                <%= p.select :card_expires_year, options_for_select(Payment.year_options.push),
+                                              { include_blank: 'Year' }, class: "form-control",
+                                              data: { stripe: "exp-year"}, required: true %>
+              </div>
+              
+            </div>
+          </div>
+        <% end %>
       <% end %>
       
-      
       <%= f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary" %>
+      
     <% end %>
   </div>
 </div>
