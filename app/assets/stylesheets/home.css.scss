@@ -12,13 +12,14 @@
   
   /* Set rules to fill background */
   min-width: 100%;
+  min-height: 100%;
 	
   /* Set up proportionate scaling */
   width: 100%;
   height: 100%;
 	
   /* Set up positioning */
-  position: fixed;
+  position: relative;
   
   .well {
     margin-top: 20px;
