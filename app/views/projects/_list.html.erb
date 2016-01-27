@@ -17,13 +17,7 @@
       <% @projects.each do |project| %>
         <tr>
           <td><%= link_to project.title, tenant_project_path(project, tenant_id: @tenant.id), class: "main-link" %></td>
-          <td>
-            <% if project.deadline %>
-              <%= project.deadline %>
-            <% else %>
-              None
-            <% end %>
-          </td>
+          <td>Fix me in views/projects/_list partial<%= project.deadline %></td>
           <td><%= project.details %></td>
           <td>
             <%= link_to 'View', tenant_project_path(project, tenant_id: @tenant.id), class: "btn btn-primary btn-sm" %>
