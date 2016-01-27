@@ -21,22 +21,29 @@
   position: fixed;
   
   .well {
+    margin-top: 20px;
     background-image: url("well-image.png");
     background-color: transparent;
+    border-radius: 100%;
     h1 {
       margin-top: 0px;
       padding-top: 10%;
-      color: #428bca;
-      font-size: 6em;
+      color: #357ebd;
+      font-size: 5em;
       font-weight: bold;
+      padding-bottom: 2%;
     }
     
     p {
-      color: #6aa3d5;
+      color: #3bb5b1;
       font-size: 2em;
       padding-bottom: 10%;
     }
-  }
+    
+    #logo-home-header {
+      font-weight: 300 !important;
+    }
+  } // .well close
   
   .btn-success {
     border: 2px solid #00a028;
@@ -45,6 +52,12 @@
       background-color: #006d1b !important;
       border: 2px solid #008722;
     }
+  }
+}
+
+.clearfix {
+  h2 {
+    color: #357ebd !important;
   }
 }
 
