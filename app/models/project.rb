@@ -13,12 +13,20 @@ class Project < ActiveRecord::Base
     end
   end
   
-  def self.by_plan_and_tenant(tenant_id)
+  def self.by_user_plan_and_tenant(tenant_id, user)
     tenant = Tenant.find(tenant_id)
     if tenant.plan == "premium"
-      tenant.projects
+      if user.is_admin?
+        tenant.projects
+      else
+        user.projects.where(tenant_id: tenant.id)
+      end
     else
-      tenant.projects.order(:id).limit(1)
+      if user.is_admin?
+        tenant.projects.order(:id).limit(1)
+      else
+        user.projects_where(tenant_id: tenant.id).order(:id).limit(1)
+      end
     end
   end
   

@@ -56,7 +56,9 @@ class UserProjectsController < ApplicationController
   def destroy
     @user_project.destroy
     respond_to do |format|
-      format.html { redirect_to user_projects_url, notice: 'User project was successfully destroyed.' }
+      format.html { redirect_to users_tenant_project_url(id: @user_project.project_id,
+                                        tenant_id: @user_project.project.tenant_id), 
+                                        notice: 'User was removed from the project successfully.' }
       format.json { head :no_content }
     end
   end
