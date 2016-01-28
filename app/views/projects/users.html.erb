@@ -11,11 +11,11 @@
         <thead>
           <tr>
             <th>Email</th>
-            <th><%= t'.actions', :default => t("helper.actions") %></th>
+            <th><%= t'.actions', :default => t("helpers.actions") %></th>
           </tr>
         </thead>
         <tbody>
-          <%= @project_users.each do |project_user| %>
+          <% @project_users.each do |project_user| %>
             <tr>
               <td><%= project_user.email %></td>
               <td>
