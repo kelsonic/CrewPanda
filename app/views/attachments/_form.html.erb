@@ -1,7 +1,7 @@
 <%= form_for @attachment, :html => { :class => "form-horizontal attachment" } do |f| %>
 
     <% if @attachment.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
+    <div id="error_expl" class="panel panel-danger margin-top">
       <div class="panel-heading">
         <h3 class="panel-title"><%= pluralize(@attachment.errors.count, "error") %> prohibited this attachment from being saved:</h3>
       </div>
