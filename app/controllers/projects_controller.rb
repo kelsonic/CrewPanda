@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-    # @project.users << current_user
+    @project.users << current_user
     respond_to do |format|
       if @project.save
         format.html { redirect_to root_url, notice: 'Project was successfully created.' }
