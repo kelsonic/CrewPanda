@@ -1,5 +1,0 @@
-This is Kelson's seventh Rails project!
-
-Welcome to CrewPanda!
-
-This is a SaaS app that will be integrated with RVM-Development's CrewPanda in the near future as an in-browser app.
