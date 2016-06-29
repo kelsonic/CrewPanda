@@ -1,4 +1,4 @@
-![Crew Panda](https://github.com/kelsonic/crewpanda/blob/master/app/assets/images/logo-landing.png)
+![Crew Panda](https://github.com/kelsonic/crewpanda/blob/master/app/assets/images/Logo-Landing.png)
 
 Crew Panda is a SaaS Project Management app.
 
