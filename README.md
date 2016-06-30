@@ -20,7 +20,7 @@ The app will now be running on localhost:3000.
 
 ## Usage
 
-View the app live at [crewpanda.herokuapp.com](http://tutorup.herokuapp.com/).
+View the app live at [crewpanda.herokuapp.com](http://crewpanda.herokuapp.com/).
 
 ## Contributing
 
